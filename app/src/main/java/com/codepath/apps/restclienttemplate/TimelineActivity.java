@@ -1,5 +1,6 @@
 package com.codepath.apps.restclienttemplate;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -53,12 +54,14 @@ public class TimelineActivity extends AppCompatActivity {
         return true;
     }
 
-    public void onComposeAction(MenuItem mi){
-        // handle click here
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if(item.getItemId() == R.id.miCompose){
+            Intent i = new Intent(this, ComposeActivity.class);
+            startActivity(i);
+        }
+        return true;
     }
-
-
-
 
     private void populateTimeline() {
         client.getHomeTimeline(new JsonHttpResponseHandler() {
@@ -106,4 +109,9 @@ public class TimelineActivity extends AppCompatActivity {
             }
         });
     }
+
+    //@Override
+    //public void startActivityForResult(Intent intent, int requestCode) {
+
+    //}
 }
