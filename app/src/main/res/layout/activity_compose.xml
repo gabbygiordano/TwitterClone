@@ -11,7 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Tweet"
-        android:layout_below="@+id/etComposeTweet"
+        android:layout_below="@+id/textInputLayout"
         android:layout_alignParentEnd="true" />
 
     <ImageView
@@ -31,14 +31,26 @@
         android:layout_toEndOf="@+id/ivProfilePic"
         android:text="TextView" />
 
-    <EditText
-        android:id="@+id/etComposeTweet"
-        android:layout_width="wrap_content"
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
+        app:counterEnabled="true"
+        app:counterMaxLength="140"
+        android:id="@+id/textInputLayout"
         android:layout_below="@+id/ivProfilePic"
-        android:ems="10"
-        android:hint="What's Happening?"
-        android:inputType="textPersonName" />
+        android:layout_alignParentStart="true">
+        <EditText
+            android:id="@+id/etComposeTweet"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="140"
+            android:hint="What's Happening?"
+            android:inputType="textPersonName"
+            android:layout_below="@+id/ivProfilePic"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="17dp" />
+    </android.support.design.widget.TextInputLayout>
+
+
 
 </RelativeLayout>
