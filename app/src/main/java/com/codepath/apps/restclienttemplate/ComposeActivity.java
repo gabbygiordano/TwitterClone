@@ -7,6 +7,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.codepath.apps.restclienttemplate.models.Tweet;
 import com.loopj.android.http.JsonHttpResponseHandler;
@@ -24,6 +26,8 @@ public class ComposeActivity extends AppCompatActivity {
     //keys used for passing data between activities
     public final static String TWEET_TEXT = "tweetText";
     private Button button;
+    private ImageView ivProfilePic;
+    private TextView tvYourUser;
     private TwitterClient client;
     public EditText getEtComposeTweet;
     String tweet;
@@ -39,6 +43,9 @@ public class ComposeActivity extends AppCompatActivity {
         etComposeTweet = (EditText) findViewById(R.id.etComposeTweet);
         tweet = etComposeTweet.getText().toString();
 
+
+        ivProfilePic = (ImageView) findViewById(R.id.ivProfilePic);
+        tvYourUser = (TextView) findViewById(R.id.tvYourUser);
         button = (Button) findViewById(R.id.btTweet);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
