@@ -3,8 +3,11 @@ package com.codepath.apps.restclienttemplate.models;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.ArrayList;
 
 /**
  * Created by gabbygiordano on 6/26/17.
@@ -55,6 +58,20 @@ public class Tweet implements Parcelable {
         return tweet;
 
     }
+
+    public static ArrayList<Tweet> fromJSONArray(JSONArray jsonArray) {
+        ArrayList<Tweet> results = new ArrayList<>();
+        for (int i = 0; i < jsonArray.length(); i++) {
+            try {
+                results.add(Tweet.fromJSON(jsonArray.getJSONObject(i)));
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+        return results;
+    }
+
+
 
     @Override
     public int describeContents() {
