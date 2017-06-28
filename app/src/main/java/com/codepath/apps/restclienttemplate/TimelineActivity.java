@@ -48,8 +48,9 @@ public class TimelineActivity extends AppCompatActivity {
 
     }
 
+
     @Override
-    public boolean onCreateOptionsMenu(Menu menu){
+    public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
@@ -58,7 +59,7 @@ public class TimelineActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         if(item.getItemId() == R.id.miCompose){
             Intent i = new Intent(this, ComposeActivity.class);
-            startActivity(i);
+            startActivityForResult(i, 1);
         }
         return true;
     }
@@ -110,8 +111,15 @@ public class TimelineActivity extends AppCompatActivity {
         });
     }
 
-    //@Override
-    //public void startActivityForResult(Intent intent, int requestCode) {
 
-    //}
-}
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (resultCode == 1) {
+            Tweet tweet = (Tweet) data.getParcelableExtra("TWEET");
+            tweets.add(0, tweet);
+            tweetAdapter.notifyItemInserted(0);
+            rvTweets.scrollToPosition(0);
+            }
+        }
+    }
+
