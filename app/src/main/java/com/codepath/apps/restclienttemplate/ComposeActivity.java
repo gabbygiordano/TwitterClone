@@ -11,6 +11,7 @@ import android.widget.EditText;
 import com.codepath.apps.restclienttemplate.models.Tweet;
 import com.loopj.android.http.JsonHttpResponseHandler;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -25,6 +26,7 @@ public class ComposeActivity extends AppCompatActivity {
     private Button button;
     private TwitterClient client;
     public EditText getEtComposeTweet;
+    String tweet;
 
 
     EditText etComposeTweet;
@@ -35,6 +37,8 @@ public class ComposeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_compose);
         client = TwitterApp.getRestClient();
         etComposeTweet = (EditText) findViewById(R.id.etComposeTweet);
+        tweet = etComposeTweet.getText().toString();
+
         button = (Button) findViewById(R.id.btTweet);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -48,15 +52,31 @@ public class ComposeActivity extends AppCompatActivity {
                             newTweet = Tweet.fromJSON(response);
                             Intent i = new Intent(ComposeActivity.this, TimelineActivity.class);
                             i.putExtra("TWEET", newTweet);
-                            setResult(1, i);
-                            finish();
+                            startActivityForResult(i, 1);
+                            // finish();
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
                     }
+
+                    @Override
+                    public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
+                        throwable.printStackTrace();
+                    }
+
+                    @Override
+                    public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
+                        throwable.printStackTrace();
+                    }
+
+                    @Override
+                    public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONArray errorResponse) {
+                        throwable.printStackTrace();
+                    }
                 });
             }
         });
-        }
+    }
+
 
 }
