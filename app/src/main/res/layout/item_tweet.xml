@@ -49,4 +49,38 @@
         android:text="TextView"
         android:textSize="12sp"
         android:layout_alignParentTop="true" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvBody"
+        android:layout_toEndOf="@+id/ivProfileImage"
+        android:orientation="horizontal"
+        android:layout_alignParentBottom="true">
+
+        <Button
+            android:id="@+id/btReply"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_alignStart="@+id/tvUserName"
+            android:layout_below="@+id/tvBody"
+            android:layout_marginLeft="5dp"
+            android:background="@drawable/reply" />
+
+        <Button
+            android:id="@+id/btRetweet"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginLeft="100dp"
+            android:background="@drawable/retweet" />
+
+        <Button
+            android:id="@+id/btFavorite"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginLeft="100dp"
+            android:background="@drawable/heart" />
+
+    </LinearLayout>
+
 </RelativeLayout>
