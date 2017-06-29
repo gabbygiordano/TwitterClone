@@ -46,6 +46,7 @@ public class ComposeActivity extends AppCompatActivity {
 
         ivProfilePic = (ImageView) findViewById(R.id.ivProfilePic);
         tvYourUser = (TextView) findViewById(R.id.tvYourUser);
+        tvYourUser.setText("@gabby_giordano");
         button = (Button) findViewById(R.id.btTweet);
         button.setOnClickListener(new View.OnClickListener() {
             @Override

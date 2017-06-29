@@ -21,7 +21,8 @@
         android:layout_height="50dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        app:srcCompat="@android:color/background_light" />
+        android:background="@drawable/ic_vector_person"
+        app:srcCompat="@android:color/transparent" />
 
     <TextView
         android:id="@+id/tvYourUser"

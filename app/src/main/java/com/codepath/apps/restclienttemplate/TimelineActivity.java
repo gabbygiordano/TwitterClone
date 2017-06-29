@@ -131,6 +131,7 @@ public class TimelineActivity extends AppCompatActivity {
         return true;
     }
 
+
     private void populateTimeline() {
         client.getHomeTimeline(new JsonHttpResponseHandler() {
             @Override
