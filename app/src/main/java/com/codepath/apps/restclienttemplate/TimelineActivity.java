@@ -74,6 +74,7 @@ public class TimelineActivity extends AppCompatActivity {
         // `client` here is an instance of Android Async HTTP
         // getHomeTimeline is an example endpoint.
 
+        showProgressBar();
         client.getHomeTimeline(new JsonHttpResponseHandler() {
             public void onSuccess(int statusCode, Header[] headers, JSONArray json) {
                 // Remember to CLEAR OUT old items before appending in the new ones
@@ -82,6 +83,7 @@ public class TimelineActivity extends AppCompatActivity {
                 tweetAdapter.addAll(Tweet.fromJSONArray(json));
                 // Now we call setRefreshing(false) to signal refresh has finished
                 swipeContainer.setRefreshing(false);
+                hideProgressBar();
             }
 
             public void onFailure(Throwable e) {
