@@ -26,6 +26,7 @@ public class TimelineActivity extends AppCompatActivity {
     TweetsListFragment fragmentTweetsList;
 
     HomeTimelineFragment fragmentHomeTimeline;
+    private Menu menu;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +60,13 @@ public class TimelineActivity extends AppCompatActivity {
         tabLayout.setupWithViewPager(vpPager);
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu){
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        getMenuInflater().inflate(R.menu.menu_timeline, menu);
+        return true;
+    }
+
 
 
     MenuItem miActionProgressItem;
@@ -73,12 +81,7 @@ public class TimelineActivity extends AppCompatActivity {
         return super.onPrepareOptionsMenu(menu);
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
-
+    
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.miCompose) {
