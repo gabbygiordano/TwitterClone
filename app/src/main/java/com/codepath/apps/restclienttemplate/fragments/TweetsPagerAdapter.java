@@ -14,6 +14,7 @@ public class TweetsPagerAdapter extends FragmentPagerAdapter {
     private Context context;
     private String tabTitles[] = new String[] {"Home", "Mentions"};
 
+
     public TweetsPagerAdapter(FragmentManager fm, Context context) {
         super(fm);
         this.context = context;
