@@ -5,8 +5,17 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.codepath.apps.restclienttemplate.fragments.UserTimelineFragment;
+import com.codepath.apps.restclienttemplate.models.User;
+import com.loopj.android.http.JsonHttpResponseHandler;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import cz.msebera.android.httpclient.Header;
 
 public class ProfileActivity extends AppCompatActivity {
+
+    TwitterClient client;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,5 +37,21 @@ public class ProfileActivity extends AppCompatActivity {
 
         // commit transaction
         ft.commit();
-    }
+
+        client = TwitterApp.getRestClient();
+        client.getUserInfo(new JsonHttpResponseHandler() {
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+                // deserialize the user object
+                try{
+                User user = User.fromJSON(response);
+
+                // set the title of the actionbar based on the user info
+                getSupportActionBar().setTitle(user.screenName);
+            } catch (JSONException e){
+                    e.printStackTrace();
+                }
+        }
+    });
+}
 }
