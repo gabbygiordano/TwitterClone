@@ -81,7 +81,7 @@ public class TimelineActivity extends AppCompatActivity {
         return super.onPrepareOptionsMenu(menu);
     }
 
-    
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.miCompose) {
@@ -95,6 +95,12 @@ public class TimelineActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         TweetsListFragment fragmentTweetsList = new TweetsListFragment();
         fragmentTweetsList.onFinish(requestCode, resultCode, data);
+    }
+
+    public void onProfileView(MenuItem item) {
+        // launch the profile view
+        Intent i = new Intent(this, ProfileActivity.class);
+        startActivity(i);
     }
 }
 

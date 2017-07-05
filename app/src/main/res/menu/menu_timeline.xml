@@ -5,6 +5,7 @@
     <item
         android:id="@+id/miProfile"
         android:icon="@drawable/ic_person_white_24dp"
+        android:onClick="onProfileView"
         android:title="Item"
-        app:showAsAction="ifRoom" />
+        app:showAsAction="always" />
 </menu>
