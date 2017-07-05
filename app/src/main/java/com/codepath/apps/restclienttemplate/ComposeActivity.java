@@ -10,7 +10,9 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.codepath.apps.restclienttemplate.models.Tweet;
+import com.codepath.apps.restclienttemplate.models.User;
 import com.loopj.android.http.JsonHttpResponseHandler;
 
 import org.json.JSONArray;
@@ -28,6 +30,7 @@ public class ComposeActivity extends AppCompatActivity {
     private Button button;
     private ImageView ivProfilePic;
     private TextView tvYourUser;
+    private TextView tvYourName;
     private TwitterClient client;
     public EditText getEtComposeTweet;
     String tweet;
@@ -44,9 +47,24 @@ public class ComposeActivity extends AppCompatActivity {
         tweet = etComposeTweet.getText().toString();
 
 
-        ivProfilePic = (ImageView) findViewById(R.id.ivProfilePic);
-        tvYourUser = (TextView) findViewById(R.id.tvYourUser);
-        tvYourUser.setText("@gabby_giordano");
+        client = TwitterApp.getRestClient();
+        client.getUserInfo(new JsonHttpResponseHandler() {
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+                // deserialize the user object
+                try{
+                    User user = User.fromJSON(response);
+
+                    // set the title of the actionbar based on the user info
+                    getSupportActionBar().setTitle("Compose Tweet");
+                    // populate the user headline
+                    populateComposeHeadline(user);
+                } catch (JSONException e){
+                    e.printStackTrace();
+                }
+            }
+        });
+
         button = (Button) findViewById(R.id.btTweet);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -84,6 +102,23 @@ public class ComposeActivity extends AppCompatActivity {
                 });
             }
         });
+    }
+
+    public void populateComposeHeadline(User user){
+
+        ivProfilePic = (ImageView) findViewById(R.id.ivProfilePic);
+        tvYourUser = (TextView) findViewById(R.id.tvYourUser);
+        tvYourName = (TextView) findViewById(R.id.tvYourName);
+
+        tvYourUser.setText("@" + user.screenName);
+        tvYourName.setText(user.name);
+
+
+        ImageView ivProfilePic = (ImageView) findViewById(R.id.ivProfilePic);
+
+        // load profile image with glide
+        Glide.with(this).load(user.profileImageUrl).into(ivProfilePic);
+
     }
 
 
