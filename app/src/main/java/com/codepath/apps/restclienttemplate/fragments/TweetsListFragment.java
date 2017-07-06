@@ -75,6 +75,7 @@ public class TweetsListFragment extends Fragment implements TweetAdapter.TweetAd
     }
 
     public void forSuccess(int statusCode, Header[] headers, JSONArray response){
+        tweets.clear();
         for (int i = 0; i < response.length(); i++) {
             // convert each object to a twet model
             // add that tweet model to our data source

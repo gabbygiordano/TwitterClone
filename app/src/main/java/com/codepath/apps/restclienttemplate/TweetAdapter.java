@@ -27,7 +27,6 @@ public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.ViewHolder> 
 
     private List<Tweet> mTweets;
     Context context;
-    public Tweet tweet;
     private TweetAdapterListener mListener;
 
     //define an interface required by the viewholder
@@ -54,7 +53,7 @@ public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.ViewHolder> 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         // get the data according to position
-        tweet = mTweets.get(position);
+        final Tweet tweet = mTweets.get(position);
 
         // populate the views according to this data
         holder.tvUsername.setText(tweet.user.name);
