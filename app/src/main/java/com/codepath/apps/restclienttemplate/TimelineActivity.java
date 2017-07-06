@@ -34,22 +34,22 @@ public class TimelineActivity extends AppCompatActivity implements TweetsListFra
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_timeline);
-        // swipeContainer = (SwipeRefreshLayout) findViewById(R.id.swipeContainer);
+       /* swipeContainer = (SwipeRefreshLayout) findViewById(R.id.swipeContainer);
         // Setup refresh listener which triggers new data loading
-        // swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-        //    @Override
-        //    public void onRefresh() {
+        swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
                 // Your code to refresh the list here.
                 // Make sure you call swipeContainer.setRefreshing(false)
                 // once the network request has completed successfully.
-        //        fragmentHomeTimeline.fetchTimelineAsync(0);
-        //    }
-        // });
+                fragmentHomeTimeline.fetchTimelineAsync(0);
+            }
+         });
         // Configure the refreshing colors
-        //swipeContainer.setColorSchemeResources(android.R.color.holo_blue_bright,
-        //        android.R.color.holo_green_light,
-        //        android.R.color.holo_orange_light,
-        //        android.R.color.holo_red_light);
+        swipeContainer.setColorSchemeResources(android.R.color.holo_blue_bright,
+                android.R.color.holo_green_light,
+                android.R.color.holo_orange_light,
+                android.R.color.holo_red_light); */
 
         // get the view pager
         ViewPager vpPager = (ViewPager) findViewById(R.id.viewpager);

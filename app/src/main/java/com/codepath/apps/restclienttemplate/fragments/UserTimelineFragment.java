@@ -31,6 +31,8 @@ public class UserTimelineFragment extends TweetsListFragment {
 
     }
 
+    
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -81,7 +83,7 @@ public class UserTimelineFragment extends TweetsListFragment {
         // `client` here is an instance of Android Async HTTP
         // getHomeTimeline is an example endpoint.
 
-        showProgressBar();
+        ((TweetSelectedListener) getActivity()).showProgressBar();
         client.getHomeTimeline(new JsonHttpResponseHandler() {
             public void onSuccess(int statusCode, Header[] headers, JSONArray json) {
                 addItems(json);

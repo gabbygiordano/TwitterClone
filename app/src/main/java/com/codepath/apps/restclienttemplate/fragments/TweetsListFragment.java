@@ -31,7 +31,11 @@ public class TweetsListFragment extends Fragment implements TweetAdapter.TweetAd
 
     public interface TweetSelectedListener{
         public void onTweetSelected(Tweet tweet);
+        public void showProgressBar();
+        public void hideProgressBar();
     }
+
+
 
 
     TweetAdapter tweetAdapter;
@@ -60,6 +64,9 @@ public class TweetsListFragment extends Fragment implements TweetAdapter.TweetAd
         // set the adapter
         rvTweets.setAdapter(tweetAdapter);
 
+
+
+
         return v;
     }
 
@@ -71,7 +78,8 @@ public class TweetsListFragment extends Fragment implements TweetAdapter.TweetAd
         tweetAdapter.addAll(Tweet.fromJSONArray(response));
         // Now we call setRefreshing(false) to signal refresh has finished
         swipeContainer.setRefreshing(false);
-        hideProgressBar();
+
+        ((TweetSelectedListener) getActivity()).hideProgressBar();
     }
 
     public void forSuccess(int statusCode, Header[] headers, JSONArray response){
@@ -99,15 +107,6 @@ public class TweetsListFragment extends Fragment implements TweetAdapter.TweetAd
         }
     }
 
-    public void showProgressBar() {
-        // Show progress item
-        miActionProgressItem.setVisible(true);
-    }
-
-    public void hideProgressBar() {
-        // Hide progress item
-        miActionProgressItem.setVisible(false);
-    }
 
     @Override
     public void onItemSelected(View view, int position) {
@@ -115,4 +114,8 @@ public class TweetsListFragment extends Fragment implements TweetAdapter.TweetAd
         //Toast.makeText(getContext(), tweet.body, Toast.LENGTH_SHORT).show();
         ((TweetSelectedListener) getActivity()).onTweetSelected(tweet);
     }
+
+
+
+
 }

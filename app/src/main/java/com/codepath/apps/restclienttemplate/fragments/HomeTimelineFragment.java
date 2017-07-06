@@ -5,9 +5,13 @@ package com.codepath.apps.restclienttemplate.fragments;
  */
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
+import com.codepath.apps.restclienttemplate.R;
 import com.codepath.apps.restclienttemplate.TwitterApp;
 import com.codepath.apps.restclienttemplate.TwitterClient;
 import com.loopj.android.http.JsonHttpResponseHandler;
@@ -22,11 +26,31 @@ public class HomeTimelineFragment extends TweetsListFragment {
 
     TwitterClient client;
 
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View v = super.onCreateView(inflater, container, savedInstanceState);
         client = TwitterApp.getRestClient();
+
+        swipeContainer = (SwipeRefreshLayout) v.findViewById(R.id.swipeContainer);
+        // Setup refresh listener which triggers new data loading
+        swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                // Your code to refresh the list here.
+                // Make sure you call swipeContainer.setRefreshing(false)
+                // once the network request has completed successfully.
+                fetchTimelineAsync(0);
+            }
+        });
+        // Configure the refreshing colors
+        swipeContainer.setColorSchemeResources(android.R.color.holo_blue_bright,
+                android.R.color.holo_green_light,
+                android.R.color.holo_orange_light,
+                android.R.color.holo_red_light);
+
         populateTimeline();
+
+        return v;
     }
 
     private void populateTimeline() {
@@ -70,7 +94,8 @@ public class HomeTimelineFragment extends TweetsListFragment {
         // `client` here is an instance of Android Async HTTP
         // getHomeTimeline is an example endpoint.
 
-        showProgressBar();
+        ((TweetSelectedListener) getActivity()).showProgressBar();
+
         client.getHomeTimeline(new JsonHttpResponseHandler() {
             public void onSuccess(int statusCode, Header[] headers, JSONArray json) {
                 addItems(json);
