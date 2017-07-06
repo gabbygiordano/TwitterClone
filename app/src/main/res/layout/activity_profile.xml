@@ -9,9 +9,9 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
+        android:id="@+id/rlUserHeader"
         android:layout_alignParentTop="true"
-        android:id="@+id/rlUserHeader">
+        android:layout_alignParentStart="true">
         
         <ImageView
             android:id="@+id/ivProfileImage"

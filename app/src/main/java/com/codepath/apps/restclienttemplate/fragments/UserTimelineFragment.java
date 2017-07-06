@@ -25,7 +25,7 @@ public class UserTimelineFragment extends TweetsListFragment {
     public static UserTimelineFragment newInstance(String screenName){
         UserTimelineFragment userTimelineFragment = new UserTimelineFragment();
         Bundle args = new Bundle();
-        args.putString("screenName", screenName);
+        args.putString("screen_name", screenName);
         userTimelineFragment.setArguments(args);
         return userTimelineFragment;
 
