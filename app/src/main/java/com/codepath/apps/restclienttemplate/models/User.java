@@ -18,6 +18,11 @@ public class User implements Parcelable {
     public long uid;
     public String screenName;
     public String profileImageUrl;
+
+    public String getScreenName() {
+        return screenName;
+    }
+
     public String tagLine;
     public int followersCount;
     public int followingCount;

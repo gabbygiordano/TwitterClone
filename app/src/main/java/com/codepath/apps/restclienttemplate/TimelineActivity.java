@@ -109,5 +109,6 @@ public class TimelineActivity extends AppCompatActivity implements TweetsListFra
     public void onTweetSelected(Tweet tweet) {
         Toast.makeText(this, tweet.body, Toast.LENGTH_SHORT).show();
     }
+
 }
 

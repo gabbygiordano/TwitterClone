@@ -1,6 +1,7 @@
 package com.codepath.apps.restclienttemplate;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.text.format.DateUtils;
 import android.view.LayoutInflater;
@@ -26,6 +27,7 @@ public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.ViewHolder> 
 
     private List<Tweet> mTweets;
     Context context;
+    public Tweet tweet;
     private TweetAdapterListener mListener;
 
     //define an interface required by the viewholder
@@ -52,7 +54,7 @@ public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.ViewHolder> 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         // get the data according to position
-        Tweet tweet = mTweets.get(position);
+        tweet = mTweets.get(position);
 
         // populate the views according to this data
         holder.tvUsername.setText(tweet.user.name);
@@ -62,6 +64,15 @@ public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.ViewHolder> 
         holder.tvTimeAgo.setText(getRelativeTimeAgo(tweet.createdAt));
 
         Glide.with(context).load(tweet.user.profileImageUrl).into(holder.ivProfileImage);
+
+        holder.ivProfileImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(context, ProfileActivity.class);
+                i.putExtra("screen_name", tweet.getUser().getScreenName());
+                context.startActivity(i);
+            }
+        });
 
 
     }
@@ -139,4 +150,6 @@ public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.ViewHolder> 
 
         return relativeDate;
     }
+
+
 }

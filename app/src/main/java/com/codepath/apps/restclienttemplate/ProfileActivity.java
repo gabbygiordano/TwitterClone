@@ -19,6 +19,7 @@ import cz.msebera.android.httpclient.Header;
 public class ProfileActivity extends AppCompatActivity {
 
     TwitterClient client;
+    private User user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

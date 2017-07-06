@@ -20,6 +20,11 @@ public class Tweet implements Parcelable {
     public String body;
     public long uid; // database ID for the tweet
     public User user;
+
+    public User getUser() {
+        return user;
+    }
+
     public String createdAt;
 
     protected Tweet(Parcel in) {
