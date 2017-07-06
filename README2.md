@@ -23,9 +23,9 @@ The following **required** functionality is completed:
   * [X] User can view the recent mentions of their username.
 * [X] User can navigate to view their own profile
   * [X] User can see picture, tagline, # of followers, # of following, and tweets on their profile.
-* [ ] User can click on the profile image in any tweet to see another user's profile
-  * [ ] User can see picture, tagline, # of followers, # of following, and tweets of clicked user.
-  * [ ] Profile view should include that user's timeline
+* [X] User can click on the profile image in any tweet to see another user's profile
+  * [X] User can see picture, tagline, # of followers, # of following, and tweets of clicked user.
+  * [X] Profile view should include that user's timeline
 
 The following **optional** features are implemented:
 
