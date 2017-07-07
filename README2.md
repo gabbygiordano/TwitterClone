@@ -12,7 +12,7 @@ The following **required** functionality is completed:
 * [X] User can **view the tweets from their home timeline**
   * [X] RecyclerView is used to display listings of any tweets
   * [X] User is displayed the username, name, and body for each tweet
-  * [X] User is displayed the [relative timestamp](https://gist.github.com/nesquena/f786232f5ef72f6e10a7) for each tweet "8m", "7h"
+  * [X] User is displayed the relative timestamp for each tweet "8m", "7h"
 * [X] User can **compose and post a new tweet**
   * [X] User can click a "Compose" icon in the App Bar on the top right
   * [X] User can then enter a new tweet from a second activity and then post this to twitter
