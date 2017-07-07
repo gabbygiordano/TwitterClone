@@ -49,22 +49,45 @@ public class ComposeActivity extends AppCompatActivity {
 
 
         client = TwitterApp.getRestClient();
-        client.getUserInfo(new JsonHttpResponseHandler() {
-            @Override
-            public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
-                // deserialize the user object
-                try{
-                    User user = User.fromJSON(response);
+        if (getIntent().hasExtra("screen_name")) {
+            client.getUserInfo(new JsonHttpResponseHandler() {
+                @Override
+                public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+                    etComposeTweet.setText("@" + getIntent().getStringExtra("screen_name"));
+                    // deserialize the user object
+                    try {
+                        User user = User.fromJSON(response);
 
-                    // set the title of the actionbar based on the user info
-                    getSupportActionBar().setTitle("Compose Tweet");
-                    // populate the user headline
-                    populateComposeHeadline(user);
-                } catch (JSONException e){
-                    e.printStackTrace();
+                        // set the title of the actionbar based on the user info
+                        getSupportActionBar().setTitle("Compose Tweet");
+                        // populate the user headline
+                        populateComposeHeadline(user);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
                 }
-            }
-        });
+            });
+
+        }
+        else{
+            client.getUserInfo(new JsonHttpResponseHandler() {
+                @Override
+                public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+                    // deserialize the user object
+                    try {
+                        User user = User.fromJSON(response);
+
+                        // set the title of the actionbar based on the user info
+                        getSupportActionBar().setTitle("Compose Tweet");
+                        // populate the user headline
+                        populateComposeHeadline(user);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+            });
+        }
+
 
         button = (Button) findViewById(R.id.btTweet);
         button.setOnClickListener(new View.OnClickListener() {

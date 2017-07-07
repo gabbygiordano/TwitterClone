@@ -77,7 +77,7 @@ public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.ViewHolder> 
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(context, ComposeActivity.class);
-                //i.putExtra("screen_name", tweet.getUser().getScreenName());
+                i.putExtra("screen_name", tweet.getUser().getScreenName());
                 context.startActivity(i);
             }
         });
