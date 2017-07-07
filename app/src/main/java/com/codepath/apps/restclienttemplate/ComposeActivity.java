@@ -28,6 +28,7 @@ public class ComposeActivity extends AppCompatActivity {
     //keys used for passing data between activities
     public final static String TWEET_TEXT = "tweetText";
     private Button button;
+    private Button replyButton;
     private ImageView ivProfilePic;
     private TextView tvYourUser;
     private TextView tvYourName;
@@ -102,6 +103,7 @@ public class ComposeActivity extends AppCompatActivity {
                 });
             }
         });
+
     }
 
     public void populateComposeHeadline(User user){

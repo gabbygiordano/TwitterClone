@@ -60,6 +60,8 @@ public class TimelineActivity extends AppCompatActivity implements TweetsListFra
         // setup the tablayout to use the view pager
         TabLayout tabLayout = (TabLayout) findViewById(R.id.sliding_tabs);
         tabLayout.setupWithViewPager(vpPager);
+
+
     }
 
     @Override

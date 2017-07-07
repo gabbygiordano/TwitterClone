@@ -31,7 +31,7 @@ public class UserTimelineFragment extends TweetsListFragment {
 
     }
 
-    
+
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
